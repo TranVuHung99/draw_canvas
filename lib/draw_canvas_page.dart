@@ -3,15 +3,14 @@ import 'dart:core';
 import 'dart:io';
 
 import 'dart:ui' as ui;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 
+enum Type { line, sticker }
 
-enum Type {line, sticker}
 typedef ItemLocation = (ui.Image?, Offset, Type);
 
 class DrawingCanvas extends StatefulWidget {
@@ -61,13 +60,10 @@ class _DrawingCanvasState extends State<DrawingCanvas> {
       displayText = "Saving picture to gallery ...";
     });
     try {
-
       final imgBytes = await screenShotController.capture();
       if (imgBytes != null) {
         final dir = await getTemporaryDirectory();
-        final now = DateTime
-            .now()
-            .millisecond;
+        final now = DateTime.now().millisecond;
         final dirName = "${dir.path}/$now.png";
         final file = File(dirName);
         await file.writeAsBytes(imgBytes);
@@ -77,7 +73,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> {
           displayText = "Saving success";
         });
       }
-    } catch(e) {
+    } catch (e) {
       setState(() {
         isSaving = false;
         displayText = "Saving failed";
@@ -96,16 +92,26 @@ class _DrawingCanvasState extends State<DrawingCanvas> {
       appBar: AppBar(
         title: const Text("Draw Canvas"),
         actions: [
-          Padding(padding: const EdgeInsets.only(right: 15), child: InkWell(
-            onTap: _onCaptureImage,
-            child: const Icon(Icons.camera_alt_outlined,),
-          ),)
+          Padding(
+            padding: const EdgeInsets.only(right: 15),
+            child: InkWell(
+              onTap: _onCaptureImage,
+              child: const Icon(
+                Icons.camera_alt_outlined,
+              ),
+            ),
+          )
         ],
       ),
       body: Column(
         children: [
-          const SizedBox(height: 10,),
-          Text(displayText, style: const TextStyle(fontSize: 18),),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            displayText,
+            style: const TextStyle(fontSize: 18),
+          ),
           const SizedBox(height: 20),
           DragTarget(
             onAcceptWithDetails: (detail) {
@@ -145,16 +151,15 @@ class _DrawingCanvasState extends State<DrawingCanvas> {
                         size: const Size(400, 400),
                       ),
                     ),
-                  )
-              );
+                  ));
             },
           ),
-          const SizedBox(height: 20,),
+          const SizedBox(
+            height: 20,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ..._buildListSticker()
-            ],
+            children: [..._buildListSticker()],
           ),
           const SizedBox(
             height: 30,
@@ -182,14 +187,17 @@ class _DrawingCanvasState extends State<DrawingCanvas> {
         width: 60,
         height: 60,
       );
-      final item = Padding(padding: const EdgeInsets.symmetric(horizontal: 10), child:  Draggable(
-        data: path,
-        feedback: image,
-        child: Opacity(
-          opacity: 0.8,
-          child: image,
+      final item = Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Draggable(
+          data: path,
+          feedback: image,
+          child: Opacity(
+            opacity: 0.8,
+            child: image,
+          ),
         ),
-      ),);
+      );
       res.add(item);
     }
     return res;
@@ -211,8 +219,8 @@ class Draw extends CustomPainter {
 
     for (int i = 0; i < items.length; i++) {
       final item = items[i];
-      if(item != null) {
-        if (item.$3 == Type.sticker){
+      if (item != null) {
+        if (item.$3 == Type.sticker) {
           final offset = item.$2;
           paintImage(
             canvas: canvas,
@@ -220,17 +228,14 @@ class Draw extends CustomPainter {
             rect: Rect.fromCenter(center: offset, width: 70, height: 70),
             image: item.$1!,
           );
-        }else {
-          final next = i < items.length-1 ? items[i + 1] : null;
+        } else {
+          final next = i < items.length - 1 ? items[i + 1] : null;
           if (next != null && next.$3 == Type.line) {
             canvas.drawLine(item.$2, next.$2, paint);
           }
         }
       }
-
-
     }
-
   }
 
   @override
