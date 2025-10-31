@@ -16,9 +16,14 @@ This document outlines the requirements for a Flutter mobile application that pr
 The drawing canvas will be a digital easel where users can express their creativity.
 
 *   **Process: Free-hand Drawing**
-    - [ ] Listen for pan update events on the canvas area.
-    - [ ] Store the user's drawing path as a series of points.
-    - [ ] Use a `CustomPainter` to draw the path on the canvas.
+    - [x] Listen for pan update events on the canvas area.
+    - [x] Store the user's drawing path as a series of points.
+    - [x] Use a `CustomPainter` to draw the path on the canvas.
+
+*   **Process: Erase Drawing**
+    - [x] Add a toggle button with the `cleaning_services` icon to switch between "Draw" and "Erase" modes.
+    - [x] When in "Erase" mode, set the painter's `BlendMode` to `BlendMode.clear`.
+    - [x] Update the `CustomPainter` to apply the `BlendMode.clear` when drawing lines in erase mode, effectively erasing them.
 
 *   **Process: Sticker Placement**
     - [ ] Create `Draggable` widgets for each sticker in the palette.
@@ -43,12 +48,14 @@ The drawing canvas will be a digital easel where users can express their creativ
 #### 3.1.1. Testing
 
 *   **Manual Testing:**
-    - [ ] Verify that free-hand drawing works smoothly and accurately.
+    - [x] Verify that free-hand drawing works smoothly and accurately.
+    - [ ] Verify that erase mode works correctly with different stroke widths.
     - [ ] Verify that stickers can be dragged from the palette and dropped onto the canvas at the correct position.
     - [ ] Verify that the "Clear" button instantly removes all content from the canvas.
     - [ ] Verify that the "Save" button saves the current canvas content to the device's gallery and that the image is not corrupted or blank.
 *   **Automated Testing:**
-    - [ ] Write a widget test to verify that the canvas is rendered correctly.
+    - [x] Write a widget test to verify that the canvas is rendered correctly.
+    - [ ] Write a widget test to verify that tapping the erase button toggles the erase mode.
     - [ ] Write a widget test to simulate a drag-and-drop operation and verify that the sticker is added to the canvas state.
     - [ ] Write a unit test for the "Clear" functionality to ensure the canvas state is properly cleared.
 

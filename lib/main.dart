@@ -1,9 +1,6 @@
-import 'dart:core';
-
-import 'package:draw_canvas/animation_page.dart';
-import 'package:draw_canvas/draw_canvas_page.dart';
+import 'package:draw_canvas_and_animations/animation_page.dart';
+import 'package:draw_canvas_and_animations/draw_canvas_page.dart';
 import 'package:flutter/material.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -28,24 +25,18 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
-
-  int _selectedPageIndex = 0;
-
-  late TabController tabController;
+class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
 
   @override
   void initState() {
-    tabController = TabController(vsync: this, length: 2, initialIndex: _selectedPageIndex);
-    tabController.addListener(() {
-      _selectedPageIndex = tabController.index;
-    });
     super.initState();
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
   void dispose() {
-    tabController.dispose();
+    _tabController.dispose();
     super.dispose();
   }
 
@@ -53,39 +44,22 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: TabBarView(
-        controller: tabController,
         physics: const NeverScrollableScrollPhysics(),
+        controller: _tabController,
         children: const [
           DrawingCanvas(),
           AnimationPage(),
         ],
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 10),
+      bottomNavigationBar: BottomAppBar(
         child: TabBar(
-          controller: tabController,
-          unselectedLabelColor: Colors.grey,
-          labelColor: Colors.black54,
-          dividerColor: Colors.transparent,
-          indicatorColor: Colors.black54,
-          labelPadding: EdgeInsets.zero,
+          controller: _tabController,
           tabs: const [
-            Tab(
-              height: 60,
-              text: "Canvas",
-
-            ),
-            Tab(
-              height: 60,
-              text: "Animation",
-
-            ),
+            Tab(icon: Icon(Icons.draw), text: 'Canvas'),
+            Tab(icon: Icon(Icons.animation), text: 'Animation'),
           ],
         ),
       ),
     );
   }
 }
-
-
-

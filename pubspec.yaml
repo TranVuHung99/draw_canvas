@@ -1,4 +1,4 @@
-name: draw_canvas
+name: draw_canvas_and_animations
 description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
