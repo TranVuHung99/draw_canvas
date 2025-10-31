@@ -25,6 +25,12 @@ The drawing canvas will be a digital easel where users can express their creativ
     - [x] When in "Erase" mode, set the painter's `BlendMode` to `BlendMode.clear`.
     - [x] Update the `CustomPainter` to apply the `BlendMode.clear` when drawing lines in erase mode, effectively erasing them.
 
+*   **Process: Adjust Stroke Width**
+    - [x] Add a vertical `Slider` inside a `Drawer` with discrete steps and divisions.
+    - [x] The selected stroke width value should be displayed on the main UI.
+    - [x] On slider value change, update the stroke width state.
+    - [x] The `CustomPainter` will use this value to adjust the thickness of both drawing and erasing lines.
+
 *   **Process: Sticker Placement**
     - [ ] Create `Draggable` widgets for each sticker in the palette.
     - [ ] Implement a `DragTarget` on the canvas area.
@@ -50,12 +56,16 @@ The drawing canvas will be a digital easel where users can express their creativ
 *   **Manual Testing:**
     - [x] Verify that free-hand drawing works smoothly and accurately.
     - [ ] Verify that erase mode works correctly with different stroke widths.
+    - [ ] Verify that the stroke width slider in the drawer updates the stroke width of the brush.
+    - [ ] Verify that the selected stroke width is displayed in the AppBar.
     - [ ] Verify that stickers can be dragged from the palette and dropped onto the canvas at the correct position.
     - [ ] Verify that the "Clear" button instantly removes all content from the canvas.
     - [ ] Verify that the "Save" button saves the current canvas content to the device's gallery and that the image is not corrupted or blank.
 *   **Automated Testing:**
     - [x] Write a widget test to verify that the canvas is rendered correctly.
-    - [ ] Write a widget test to verify that tapping the erase button toggles the erase mode.
+    - [x] Write a widget test to verify that tapping the erase button toggles the erase mode.
+    - [x] Write a widget test to verify that the slider in the drawer is present and can be changed.
+    - [x] Write a widget test to verify that the stroke width text in the app bar is updated when the slider is changed.
     - [ ] Write a widget test to simulate a drag-and-drop operation and verify that the sticker is added to the canvas state.
     - [ ] Write a unit test for the "Clear" functionality to ensure the canvas state is properly cleared.
 

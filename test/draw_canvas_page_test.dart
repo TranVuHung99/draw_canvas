@@ -38,4 +38,44 @@ void main() {
     // Verify that the icon has changed back to cleaning_services.
     expect(find.byIcon(Icons.cleaning_services), findsOneWidget);
   });
+
+  testWidgets('DrawingCanvas should open drawer and have a slider',
+      (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const MaterialApp(home: DrawingCanvas()));
+
+    // Open the drawer.
+    await tester.dragFrom(
+        tester.getTopLeft(find.byType(MaterialApp)), const Offset(300, 0));
+    await tester.pumpAndSettle();
+
+    // Verify that the drawer is open.
+    expect(find.byType(Drawer), findsOneWidget);
+
+    // Verify that the slider is present in the drawer.
+    expect(find.descendant(of: find.byType(Drawer), matching: find.byType(Slider)),
+        findsOneWidget);
+  });
+
+  testWidgets('DrawingCanvas should update stroke width when slider is changed',
+      (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const MaterialApp(home: DrawingCanvas()));
+
+    // Open the drawer.
+    await tester.dragFrom(
+        tester.getTopLeft(find.byType(MaterialApp)), const Offset(300, 0));
+    await tester.pumpAndSettle();
+
+    // Verify that the initial stroke width is 5.0.
+    expect(find.text('Stroke: 5.0'), findsOneWidget);
+
+    // Change the slider value.
+    await tester.tap(find.byType(Slider));
+    await tester.pump();
+
+    // Verify that the stroke width text is updated.
+    // The new value is not deterministic, so we check that it's not 5.0 anymore.
+    expect(find.text('Stroke: 5.0'), findsNothing);
+  });
 }

@@ -10,18 +10,48 @@ class DrawingCanvas extends StatefulWidget {
 class _DrawingCanvasState extends State<DrawingCanvas> {
   final List<DrawingPoint?> _points = [];
   bool _isErasing = false;
+  double _strokeWidth = 5.0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Drawing Canvas'),
+        actions: [
+          Text('Stroke: ${_strokeWidth.toStringAsFixed(1)}'),
+          const SizedBox(width: 16),
+        ],
+      ),
+      drawer: Drawer(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Stroke Width:'),
+            RotatedBox(
+              quarterTurns: 3,
+              child: Slider(
+                value: _strokeWidth,
+                min: 1.0,
+                max: 20.0,
+                divisions: 19,
+                label: _strokeWidth.round().toString(),
+                onChanged: (value) {
+                  setState(() {
+                    _strokeWidth = value;
+                  });
+                },
+              ),
+            ),
+          ],
+        ),
       ),
       body: GestureDetector(
         onPanUpdate: (details) {
           setState(() {
             _points.add(DrawingPoint(
-                offset: details.localPosition, isErasing: _isErasing));
+                offset: details.localPosition,
+                isErasing: _isErasing,
+                strokeWidth: _strokeWidth));
           });
         },
         onPanEnd: (details) {
@@ -52,8 +82,12 @@ class _DrawingCanvasState extends State<DrawingCanvas> {
 class DrawingPoint {
   final Offset offset;
   final bool isErasing;
+  final double strokeWidth;
 
-  DrawingPoint({required this.offset, this.isErasing = false});
+  DrawingPoint(
+      {required this.offset,
+      this.isErasing = false,
+      required this.strokeWidth});
 }
 
 class DrawingPainter extends CustomPainter {
@@ -67,7 +101,7 @@ class DrawingPainter extends CustomPainter {
       if (points[i] != null && points[i + 1] != null) {
         final paint = Paint()
           ..strokeCap = StrokeCap.round
-          ..strokeWidth = 5.0;
+          ..strokeWidth = points[i]!.strokeWidth;
 
         if (points[i]!.isErasing) {
           paint.blendMode = BlendMode.clear;
