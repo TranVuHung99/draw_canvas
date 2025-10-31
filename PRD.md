@@ -109,44 +109,8 @@ The application will have a simple and intuitive user interface.
     - [ ] A section displaying the interactive heart animations.
     - [ ] A progress bar section that visually represents the user's progress.
 
-### 4.1. Testing
 
-*   **Manual Testing:**
-    - [ ] Verify that tapping on the "Canvas" and "Animation" tabs correctly switches between the respective pages.
-    - [ ] Verify that all UI elements are laid out correctly on different screen sizes.
-*   **Automated Testing:**
-    - [ ] Write a widget test to verify that the initial tab is displayed correctly.
-    - [ ] Write a widget test to simulate tapping on the tabs and verify that the correct page is displayed.
 
-## 5. Technical Requirements
-
-*   **Platform:** The application will be built using the Flutter framework for both iOS and Android.
-*   **State Management:** A suitable state management solution should be chosen to manage the application's state. Options include `setState` for simple cases, or more advanced solutions like Provider or BLoC for better scalability.
-*   **Dependencies:** The project will utilize the following packages:
-    *   `path_provider`: To get the temporary directory for saving images.
-    *   `gallery_saver`: To save the captured image to the device gallery.
-    - [ ] A "Save" button in the app bar.
-*   **Animation UI:**
-    - [ ] A section displaying the interactive heart animations.
-    - [ ] A progress bar section that visually represents the user's progress.
-
-### 4.1. Testing
-
-*   **Manual Testing:**
-    - [ ] Verify that tapping on the "Canvas" and "Animation" tabs correctly switches between the respective pages.
-    - [ ] Verify that all UI elements are laid out correctly on different screen sizes.
-*   **Automated Testing:**
-    - [ ] Write a widget test to verify that the initial tab is displayed correctly.
-    - [ ] Write a widget test to simulate tapping on the tabs and verify that the correct page is displayed.
-
-## 5. Technical Requirements
-
-*   **Platform:** The application will be built using the Flutter framework for both iOS and Android.
-*   **State Management:** A suitable state management solution should be chosen to manage the application's state. Options include `setState` for simple cases, or more advanced solutions like Provider or BLoC for better scalability.
-*   **Dependencies:** The project will utilize the following packages:
-    *   `path_provider`: To get the temporary directory for saving images.
-    *   `gallery_saver`: To save the captured image to the device gallery.
-    *   `screenshot`: To capture the drawing canvas as an image.
 
 ## 6. Assets
 
