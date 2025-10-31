@@ -1,7 +1,11 @@
+import 'dart:io';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:screenshot/screenshot.dart';
+import 'package:gallery_saver/gallery_saver.dart';
 
 enum DrawingMode {
   draw,
@@ -22,6 +26,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> {
   double _strokeWidth = 5.0;
   bool _isFabOpen = false; // New state variable for Speed Dial
   DrawingMode _currentMode = DrawingMode.draw; // New state variable for current mode
+  final ScreenshotController _screenshotController = ScreenshotController();
 
   final List<String> _stickerAssets = [
     'resources/images/cat.png',
@@ -116,11 +121,13 @@ class _DrawingCanvasState extends State<DrawingCanvas> {
                       },
                       child: Container(
                         color: Colors.white,
-                        child: CustomPaint(
-                          painter: DrawingPainter(points: _points, stickers: _stickers, stickerImages: _stickerImages),
-                          size: Size.infinite,
-                        ),
-                      ),
+                                            child: Screenshot(
+                                              controller: _screenshotController,
+                                              child: CustomPaint(
+                                                painter: DrawingPainter(points: _points, stickers: _stickers, stickerImages: _stickerImages),
+                                                size: Size.infinite,
+                                              ),
+                                            ),                      ),
                     );
                   },
                 ),
@@ -162,6 +169,33 @@ class _DrawingCanvasState extends State<DrawingCanvas> {
                     });
                   },
                   child: const Icon(Icons.clear),
+                ),
+                const SizedBox(height: 10),
+                FloatingActionButton(
+                  heroTag: 'saveFab',
+                  mini: true,
+                  onPressed: () async {
+                    _isFabOpen = false; // Close Speed Dial immediately
+                    await _screenshotController.capture().then((image) async {
+                      if (image != null) {
+                        final directory = await getTemporaryDirectory();
+                        final imagePath = await File('${directory.path}/canvas_${DateTime.now().millisecondsSinceEpoch}.png').create();
+                        await imagePath.writeAsBytes(image);
+                        final success = await GallerySaver.saveImage(imagePath.path);
+                        if (success != null && success) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Image saved to gallery!')),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Failed to save image.')),
+                          );
+                        }
+                      }
+                    });
+                    setState(() {}); // Rebuild to reflect _isFabOpen change
+                  },
+                  child: const Icon(Icons.save),
                 ),
                 const SizedBox(height: 10),
                 FloatingActionButton(

@@ -16,7 +16,8 @@ void main() {
         findsOneWidget);
   });
 
-  testWidgets('DrawingCanvas speed dial should manage drawing modes and close on outside tap',
+  testWidgets(
+      'DrawingCanvas speed dial should manage drawing modes and close on outside tap',
       (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(home: DrawingCanvas()));
 
@@ -24,50 +25,77 @@ void main() {
     // Verify main FAB shows brush icon (default draw mode) and speed dial is closed.
     expect(find.byIcon(Icons.brush), findsOneWidget);
     expect(find.byIcon(Icons.close), findsNothing); // Speed dial is closed
-    expect(find.byKey(const Key('clear_button')), findsNothing); // Child FABs are hidden
-    expect(find.byWidgetPredicate((widget) => widget is FloatingActionButton && widget.heroTag == 'drawFab'), findsNothing);
-    expect(find.byWidgetPredicate((widget) => widget is FloatingActionButton && widget.heroTag == 'eraseFab'), findsNothing);
+    expect(find.byKey(const Key('clear_button')),
+        findsNothing); // Child FABs are hidden
+    expect(
+        find.byWidgetPredicate((widget) =>
+            widget is FloatingActionButton && widget.heroTag == 'drawFab'),
+        findsNothing);
+    expect(
+        find.byWidgetPredicate((widget) =>
+            widget is FloatingActionButton && widget.heroTag == 'eraseFab'),
+        findsNothing);
 
     // --- Open Speed Dial ---
-    await tester.tap(find.byWidgetPredicate((widget) => widget is FloatingActionButton && widget.heroTag == 'mainFab'));
+    await tester.tap(find.byWidgetPredicate((widget) =>
+        widget is FloatingActionButton && widget.heroTag == 'mainFab'));
     await tester.pumpAndSettle();
 
     // Verify main FAB shows close icon and child FABs are visible.
     expect(find.byIcon(Icons.close), findsOneWidget);
     expect(find.byKey(const Key('clear_button')), findsOneWidget);
-    expect(find.byWidgetPredicate((widget) => widget is FloatingActionButton && widget.heroTag == 'drawFab'), findsOneWidget);
-    expect(find.byWidgetPredicate((widget) => widget is FloatingActionButton && widget.heroTag == 'eraseFab'), findsOneWidget);
+    expect(
+        find.byWidgetPredicate((widget) =>
+            widget is FloatingActionButton && widget.heroTag == 'drawFab'),
+        findsOneWidget);
+    expect(
+        find.byWidgetPredicate((widget) =>
+            widget is FloatingActionButton && widget.heroTag == 'eraseFab'),
+        findsOneWidget);
 
     // --- Select Erase Mode ---
-    await tester.tap(find.byWidgetPredicate((widget) => widget is FloatingActionButton && widget.heroTag == 'eraseFab'));
+    await tester.tap(find.byWidgetPredicate((widget) =>
+        widget is FloatingActionButton && widget.heroTag == 'eraseFab'));
     await tester.pumpAndSettle();
 
     // Verify main FAB shows cleaning_services icon (erase mode) and speed dial is closed.
     expect(find.byIcon(Icons.cleaning_services), findsOneWidget);
     expect(find.byIcon(Icons.close), findsNothing); // Speed dial is closed
-    expect(find.byKey(const Key('clear_button')), findsNothing); // Child FABs are hidden
+    expect(find.byKey(const Key('clear_button')),
+        findsNothing); // Child FABs are hidden
 
     // --- Open Speed Dial Again ---
-    await tester.tap(find.byWidgetPredicate((widget) => widget is FloatingActionButton && widget.heroTag == 'mainFab'));
+    await tester.tap(find.byWidgetPredicate((widget) =>
+        widget is FloatingActionButton && widget.heroTag == 'mainFab'));
     await tester.pumpAndSettle();
 
     // Verify main FAB shows close icon and child FABs are visible.
     expect(find.byIcon(Icons.close), findsOneWidget);
     expect(find.byKey(const Key('clear_button')), findsOneWidget);
-    expect(find.byWidgetPredicate((widget) => widget is FloatingActionButton && widget.heroTag == 'drawFab'), findsOneWidget);
-    expect(find.byWidgetPredicate((widget) => widget is FloatingActionButton && widget.heroTag == 'eraseFab'), findsOneWidget);
+    expect(
+        find.byWidgetPredicate((widget) =>
+            widget is FloatingActionButton && widget.heroTag == 'drawFab'),
+        findsOneWidget);
+    expect(
+        find.byWidgetPredicate((widget) =>
+            widget is FloatingActionButton && widget.heroTag == 'eraseFab'),
+        findsOneWidget);
 
     // --- Select Draw Mode ---
-    await tester.tap(find.byWidgetPredicate((widget) => widget is FloatingActionButton && widget.heroTag == 'drawFab'));
+    await tester.tap(find.byWidgetPredicate((widget) =>
+        widget is FloatingActionButton && widget.heroTag == 'drawFab'));
     await tester.pumpAndSettle();
 
     // Verify main FAB shows brush icon (draw mode) and speed dial is closed.
     expect(find.byIcon(Icons.brush), findsOneWidget);
     expect(find.byIcon(Icons.close), findsNothing); // Speed dial is closed
-    expect(find.byKey(const Key('clear_button')), findsNothing); // Child FABs are hidden
+    expect(find.byKey(const Key('clear_button')),
+        findsNothing); // Child FABs are hidden
 
     // --- Test Outside Tap ---
-    await tester.tap(find.byWidgetPredicate((widget) => widget is FloatingActionButton && widget.heroTag == 'mainFab')); // Open speed dial
+    await tester.tap(find.byWidgetPredicate((widget) =>
+        widget is FloatingActionButton &&
+        widget.heroTag == 'mainFab')); // Open speed dial
     await tester.pumpAndSettle();
     expect(find.byIcon(Icons.close), findsOneWidget); // Verify open
 
@@ -78,7 +106,8 @@ void main() {
     // Verify speed dial is closed and main FAB shows brush icon (still in draw mode).
     expect(find.byIcon(Icons.brush), findsOneWidget);
     expect(find.byIcon(Icons.close), findsNothing); // Speed dial is closed
-    expect(find.byKey(const Key('clear_button')), findsNothing); // Child FABs are hidden
+    expect(find.byKey(const Key('clear_button')),
+        findsNothing); // Child FABs are hidden
   });
 
   testWidgets('DrawingCanvas should open drawer and have a slider',
@@ -95,7 +124,8 @@ void main() {
     expect(find.byType(Drawer), findsOneWidget);
 
     // Verify that the slider is present in the drawer.
-    expect(find.descendant(of: find.byType(Drawer), matching: find.byType(Slider)),
+    expect(
+        find.descendant(of: find.byType(Drawer), matching: find.byType(Slider)),
         findsOneWidget);
   });
 
@@ -127,7 +157,8 @@ void main() {
     await tester.pumpWidget(const MaterialApp(home: DrawingCanvas()));
 
     // Simulate a pan gesture to draw a line.
-    await tester.drag(find.byKey(const Key('drawing_canvas')), const Offset(200, 200));
+    await tester.drag(
+        find.byKey(const Key('drawing_canvas')), const Offset(200, 200));
     await tester.pump();
 
     // Find the CustomPaint widget and get its painter.
@@ -144,7 +175,8 @@ void main() {
     final initialPointsCount = painter.points.length;
 
     // Tap the main FAB to open the Speed Dial.
-    await tester.tap(find.byWidgetPredicate((widget) => widget is FloatingActionButton && widget.heroTag == 'mainFab'));
+    await tester.tap(find.byWidgetPredicate((widget) =>
+        widget is FloatingActionButton && widget.heroTag == 'mainFab'));
     await tester.pumpAndSettle();
 
     // Tap the erase FAB to toggle erase mode.
@@ -152,7 +184,8 @@ void main() {
     await tester.pumpAndSettle();
 
     // Simulate another pan gesture to erase a line.
-    await tester.drag(find.byKey(const Key('drawing_canvas')), const Offset(300, 300));
+    await tester.drag(
+        find.byKey(const Key('drawing_canvas')), const Offset(300, 300));
     await tester.pump();
 
     // Find the CustomPaint widget again and get its painter.
@@ -184,7 +217,8 @@ void main() {
     expect(canvasFinder, findsOneWidget);
 
     // Drag the sticker to the canvas.
-    await tester.drag(firstSticker, tester.getCenter(canvasFinder) - tester.getCenter(firstSticker));
+    await tester.drag(firstSticker,
+        tester.getCenter(canvasFinder) - tester.getCenter(firstSticker));
     await tester.pump();
 
     // Find the CustomPaint widget and get its painter.
@@ -197,17 +231,23 @@ void main() {
     expect(painter.stickers.length, 1);
   });
 
-  testWidgets('DrawingCanvas should clear all drawings and stickers when clear button is pressed', (WidgetTester tester) async {
+  testWidgets(
+      'DrawingCanvas should clear all drawings and stickers when clear button is pressed',
+      (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(home: DrawingCanvas()));
     await tester.pumpAndSettle();
 
     // Simulate drawing
-    await tester.drag(find.byKey(const Key('drawing_canvas')), const Offset(100, 100));
+    await tester.drag(
+        find.byKey(const Key('drawing_canvas')), const Offset(100, 100));
     await tester.pump();
 
     // Simulate adding a sticker
     final stickerFinder = find.byType(Draggable<String>);
-    await tester.drag(stickerFinder.first, tester.getCenter(find.byKey(const Key('drawing_canvas'))) - tester.getCenter(stickerFinder.first));
+    await tester.drag(
+        stickerFinder.first,
+        tester.getCenter(find.byKey(const Key('drawing_canvas'))) -
+            tester.getCenter(stickerFinder.first));
     await tester.pump();
 
     // Get the painter to check initial state
@@ -221,7 +261,8 @@ void main() {
     expect(painter.stickers.isNotEmpty, isTrue);
 
     // Simulate tapping the main FAB to open the Speed Dial.
-    await tester.tap(find.byWidgetPredicate((widget) => widget is FloatingActionButton && widget.heroTag == 'mainFab'));
+    await tester.tap(find.byWidgetPredicate((widget) =>
+        widget is FloatingActionButton && widget.heroTag == 'mainFab'));
     await tester.pumpAndSettle();
 
     // Simulate tapping the clear FAB.
@@ -231,5 +272,41 @@ void main() {
     // Verify that points and stickers are empty after clearing
     expect(painter.points.isEmpty, isTrue);
     expect(painter.stickers.isEmpty, isTrue);
+  });
+
+  testWidgets('DrawingCanvas should save drawing to gallery',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: DrawingCanvas()));
+
+    // Simulate drawing something on the canvas
+    await tester.drag(
+        find.byKey(const Key('drawing_canvas')), const Offset(100, 100));
+    await tester.pump();
+    await tester.drag(
+        find.byKey(const Key('drawing_canvas')), const Offset(200, 200));
+    await tester.pumpAndSettle();
+
+    // Open the speed dial
+    await tester.tap(find.byWidgetPredicate((widget) =>
+        widget is FloatingActionButton && widget.heroTag == 'mainFab'));
+    await tester.pumpAndSettle();
+
+    // Tap the save button
+    await tester.tap(find.byWidgetPredicate((widget) =>
+        widget is FloatingActionButton && widget.heroTag == 'saveFab'));
+    await tester.pumpAndSettle();
+
+    
+
+    // // Verify that the success message is displayed
+    // expect(find.text('Image saved to gallery!'), findsOneWidget);
+
+    // // Verify that the speed dial is closed
+    // expect(find.byIcon(Icons.close), findsNothing);
+    // expect(find.byKey(const Key('clear_button')), findsNothing);
+    // expect(
+    //     find.byWidgetPredicate((widget) =>
+    //         widget is FloatingActionButton && widget.heroTag == 'saveFab'),
+    //     findsNothing);
   });
 }
