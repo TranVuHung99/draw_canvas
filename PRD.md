@@ -32,16 +32,16 @@ The drawing canvas will be a digital easel where users can express their creativ
     - [x] The `CustomPainter` will use this value to adjust the thickness of both drawing and erasing lines.
 
 *   **Process: Sticker Placement**
-    - [ ] Create `Draggable` widgets for each sticker in the palette.
-    - [ ] Implement a `DragTarget` on the canvas area.
-    - [ ] On drop, capture the sticker's data and its position relative to the canvas.
-    - [ ] Store the sticker and its position in a list.
-    - [ ] Use a `CustomPainter` to render the stickers on the canvas.
+    - [x] Create `Draggable` widgets for each sticker in the palette.
+    - [x] Implement a `DragTarget` on the canvas area.
+    - [x] On drop, capture the sticker's data and its position relative to the canvas.
+    - [x] Store the sticker and its position in a list.
+    - [x] Use a `CustomPainter` to render the stickers on the canvas.
 
 *   **Process: Clear Canvas**
-    - [ ] Add a "Clear" button to the UI.
-    - [ ] On button press, empty the lists containing drawing paths and stickers.
-    - [ ] Trigger a rebuild of the canvas to reflect the cleared state.
+    - [x] Add a "Clear" button to the UI.
+    - [x] On button press, empty the lists containing drawing paths and stickers.
+    - [x] Trigger a rebuild of the canvas to reflect the cleared state.
 
 *   **Process: Save to Gallery**
     - [ ] Wrap the canvas widget with a `Screenshot` controller.
@@ -58,7 +58,7 @@ The drawing canvas will be a digital easel where users can express their creativ
     - [ ] Verify that erase mode works correctly with different stroke widths.
     - [ ] Verify that the stroke width slider in the drawer updates the stroke width of the brush.
     - [ ] Verify that the selected stroke width is displayed in the AppBar.
-    - [ ] Verify that stickers can be dragged from the palette and dropped onto the canvas at the correct position.
+    - [x] Verify that stickers can be dragged from the palette and dropped onto the canvas at the correct position.
     - [ ] Verify that the "Clear" button instantly removes all content from the canvas.
     - [ ] Verify that the "Save" button saves the current canvas content to the device's gallery and that the image is not corrupted or blank.
 *   **Automated Testing:**
@@ -67,8 +67,8 @@ The drawing canvas will be a digital easel where users can express their creativ
     - [x] Write a widget test to verify that the slider in the drawer is present and can be changed.
     - [x] Write a widget test to verify that the stroke width text in the app bar is updated when the slider is changed.
     - [x] Write a widget test to verify that the pan update listener draws and erases points correctly.
-    - [ ] Write a widget test to simulate a drag-and-drop operation and verify that the sticker is added to the canvas state.
-    - [ ] Write a unit test for the "Clear" functionality to ensure the canvas state is properly cleared.
+    - [x] Write a widget test to simulate a drag-and-drop operation and verify that the sticker is added to the canvas state.
+    - [x] Write a unit test for the "Clear" functionality to ensure the canvas state is properly cleared.
 
 ### 3.2. Animation Page
 
