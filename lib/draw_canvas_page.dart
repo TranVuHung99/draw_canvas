@@ -46,6 +46,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> {
         ),
       ),
       body: GestureDetector(
+        key: const Key('drawing_canvas'),
         onPanUpdate: (details) {
           setState(() {
             _points.add(DrawingPoint(

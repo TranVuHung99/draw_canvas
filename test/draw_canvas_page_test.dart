@@ -11,7 +11,7 @@ void main() {
     // Verify that our canvas renders a CustomPaint widget.
     expect(
         find.descendant(
-            of: find.byType(GestureDetector),
+            of: find.byKey(const Key('drawing_canvas')),
             matching: find.byType(CustomPaint)),
         findsOneWidget);
   });
@@ -77,5 +77,47 @@ void main() {
     // Verify that the stroke width text is updated.
     // The new value is not deterministic, so we check that it's not 5.0 anymore.
     expect(find.text('Stroke: 5.0'), findsNothing);
+  });
+
+  testWidgets('DrawingCanvas should draw and erase points on pan update',
+      (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const MaterialApp(home: DrawingCanvas()));
+
+    // Simulate a pan gesture to draw a line.
+    await tester.drag(find.byKey(const Key('drawing_canvas')), const Offset(200, 200));
+    await tester.pump();
+
+    // Find the CustomPaint widget and get its painter.
+    final CustomPaint customPaint = tester.widget(find.descendant(
+        of: find.byKey(const Key('drawing_canvas')),
+        matching: find.byType(CustomPaint)));
+    final DrawingPainter painter = customPaint.painter as DrawingPainter;
+
+    // Verify that the points list is not empty and the last point is not for erasing.
+    expect(painter.points.isNotEmpty, isTrue);
+    final lastPoint = painter.points.where((p) => p != null).last;
+    expect(lastPoint!.isErasing, isFalse);
+
+    final initialPointsCount = painter.points.length;
+
+    // Tap the erase button to toggle erase mode.
+    await tester.tap(find.byType(FloatingActionButton));
+    await tester.pump();
+
+    // Simulate another pan gesture to erase a line.
+    await tester.drag(find.byKey(const Key('drawing_canvas')), const Offset(300, 300));
+    await tester.pump();
+
+    // Find the CustomPaint widget again and get its painter.
+    final CustomPaint customPaint2 = tester.widget(find.descendant(
+        of: find.byKey(const Key('drawing_canvas')),
+        matching: find.byType(CustomPaint)));
+    final DrawingPainter painter2 = customPaint2.painter as DrawingPainter;
+
+    // Verify that the points list has more points and the last point is for erasing.
+    expect(painter2.points.length, greaterThan(initialPointsCount));
+    final lastPoint2 = painter2.points.where((p) => p != null).last;
+    expect(lastPoint2!.isErasing, isTrue);
   });
 }
