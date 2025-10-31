@@ -44,12 +44,12 @@ The drawing canvas will be a digital easel where users can express their creativ
     - [x] Trigger a rebuild of the canvas to reflect the cleared state.
 
 *   **Process: Save to Gallery**
-    - [ ] Wrap the canvas widget with a `Screenshot` controller.
-    - [ ] Add a "Save" button to the UI.
-    - [ ] On button press, use the `Screenshot` controller to capture the canvas as an image.
-    - [ ] Use `path_provider` to get a temporary directory.
-    - [ ] Use `gallery_saver` to save the image file to the device's gallery.
-    - [ ] Display a confirmation message to the user.
+    - [x] Wrap the canvas widget with a `Screenshot` controller.
+    - [x] Add a "Save" button to the UI.
+    - [x] On button press, use the `Screenshot` controller to capture the canvas as an image.
+    - [x] Use `path_provider` to get a temporary directory.
+    - [x] Use `gallery_saver` to save the image file to the device's gallery.
+    - [x] Display a confirmation message to the user.
 
 #### 3.1.1. Testing
 
@@ -63,7 +63,7 @@ The drawing canvas will be a digital easel where users can express their creativ
     - [ ] Verify that the "Save" button saves the current canvas content to the device's gallery and that the image is not corrupted or blank.
 *   **Automated Testing:**
     - [x] Write a widget test to verify that the canvas is rendered correctly.
-    - [x] Write a widget test to verify that tapping the erase button toggles the erase mode.
+    - [x] Write a widget test to verify that the speed dial manages drawing modes and closes on outside tap.
     - [x] Write a widget test to verify that the slider in the drawer is present and can be changed.
     - [x] Write a widget test to verify that the stroke width text in the app bar is updated when the slider is changed.
     - [x] Write a widget test to verify that the pan update listener draws and erases points correctly.
