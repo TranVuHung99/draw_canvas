@@ -100,16 +100,15 @@ This page will showcase a delightful and interactive animation sequence.
 
 The application will have a simple and intuitive user interface.
 
-*   **Tab Navigation:** The main screen will feature a bottom tab bar with two tabs: "Canvas" and "Animation," allowing users to switch between the two features.
+*   **Tab Navigation:** [x] The main screen will feature a bottom tab bar with two tabs: "Canvas" and "Animation," allowing users to switch between the two features.
 *   **Canvas UI:**
-    - [ ] A dedicated area for the drawing canvas.
-    - [ ] A palette of draggable stickers.
-    - [ ] A "Clear" button.
-    - [ ] A "Save" button in the app bar.
+    - [x] A dedicated area for the drawing canvas.
+    - [x] A palette of draggable stickers.
+    - [x] A "Clear" button.
+    - [x] A "Save" button in the app bar.
 *   **Animation UI:**
-    - [ ] A section displaying the interactive heart animations.
-    - [ ] A progress bar section that visually represents the user's progress.
-
+    - [x] A section displaying the interactive heart animations.
+    - [x] A progress bar section that visually represents the user's progress.
 
 
 
