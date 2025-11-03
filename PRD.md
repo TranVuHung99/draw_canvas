@@ -69,6 +69,7 @@ The drawing canvas will be a digital easel where users can express their creativ
     - [x] Write a widget test to verify that the pan update listener draws and erases points correctly.
     - [x] Write a widget test to simulate a drag-and-drop operation and verify that the sticker is added to the canvas state.
     - [x] Write a unit test for the "Clear" functionality to ensure the canvas state is properly cleared.
+    - [ ] ~~Write a widget test for saving to gallery.~~ (Removed as it is hard to test without mocking)
 
 ### 3.2. Animation Page
 
