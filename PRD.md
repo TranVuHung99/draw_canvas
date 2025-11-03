@@ -75,16 +75,15 @@ The drawing canvas will be a digital easel where users can express their creativ
 
 This page will showcase a delightful and interactive animation sequence.
 
+*   **Process: Fade-in Animation**
+    - [x] The content of the animation page fades in when the page is loaded.
 *   **Process: Interactive Heart Animation**
-    - [x] Create a stateful widget for the heart icon.
-    - [x] Initialize `AnimationController`s and define `Tween`s for each animation property (scale, color, rotation, position).
-    - [x] Add a tap gesture recognizer to the heart icon.
-    - [x] On tap, trigger the animation controllers in sequence to create the desired effect.
-
+    - [ ] There are three heart icons in a row.
+    - [ ] When a heart is tapped, it animates towards a "cart" icon.
 *   **Process: Progress Bar Update**
-    - [x] Maintain a state variable for the progress.
-    - [x] After the heart animation completes, update the progress state.
-    - [x] Use an `AnimatedBuilder` to link the progress state to the width of the progress bar, animating its growth.
+    - [ ] A progress bar is displayed below the hearts.
+    - [ ] The progress bar updates with an animation when a heart is selected.
+    - [ ] A counter is displayed next to the "cart" icon, showing the number of selected hearts.
 
 #### 3.2.1. Testing
 
@@ -92,9 +91,9 @@ This page will showcase a delightful and interactive animation sequence.
     - [ ] Verify that tapping the heart icon triggers the full animation sequence as designed.
     - [ ] Verify that the progress bar updates its value correctly after each heart animation is completed.
 *   **Automated Testing:**
-    - [x] Write a widget test to verify that the animation controllers are initialized and disposed of correctly.
-    - [x] Write a widget test to pump the animation and verify that the animated properties (scale, color, etc.) change as expected over time.
-    - [x] Write a unit test for the progress calculation logic.
+    - [ ] Write a widget test to verify that the animation controllers are initialized and disposed of correctly.
+    - [ ] Write a widget test to pump the animation and verify that the animated properties (scale, color, etc.) change as expected over time.
+    - [ ] Write a unit test for the progress calculation logic.
 
 ## 4. User Interface (UI)
 
@@ -109,8 +108,6 @@ The application will have a simple and intuitive user interface.
 *   **Animation UI:**
     - [x] A section displaying the interactive heart animations.
     - [x] A progress bar section that visually represents the user's progress.
-
-
 
 ## 6. Assets
 
