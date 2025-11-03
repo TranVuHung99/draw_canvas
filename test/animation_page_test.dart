@@ -3,59 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('AnimationPage should render correctly', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  testWidgets('Progress bar updates on heart selection', (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(home: AnimationPage()));
 
-    // Verify that the heart icon is present.
-    expect(find.byIcon(Icons.favorite), findsOneWidget);
+    final animatedContainer = find.byType(AnimatedContainer);
+    expect(animatedContainer, findsOneWidget);
 
-    // Verify that the progress bar is present.
-    expect(find.byType(LinearProgressIndicator), findsOneWidget);
+    var container = tester.widget<AnimatedContainer>(animatedContainer);
+    expect(container.constraints!.maxWidth, 0);
 
-    // Verify that the reset button is present.
-    expect(find.widgetWithText(ElevatedButton, 'Reset'), findsOneWidget);
-  });
-
-  testWidgets('AnimationPage should update progress on heart tap', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MaterialApp(home: AnimationPage()));
-
-    // Verify that the initial progress is 0.0.
-    expect(
-        tester.widget<LinearProgressIndicator>(find.byType(LinearProgressIndicator)).value,
-        0.0);
-
-    // Tap the heart icon.
-    await tester.tap(find.byIcon(Icons.favorite));
+    await tester.tap(find.byIcon(Icons.favorite).first);
     await tester.pumpAndSettle();
 
-    // Verify that the progress is updated.
-    expect(
-        tester.widget<LinearProgressIndicator>(find.byType(LinearProgressIndicator)).value,
-        greaterThan(0.0));
-  });
+    container = tester.widget<AnimatedContainer>(animatedContainer);
+    final screenWidth = tester.binding.window.physicalSize.width / tester.binding.window.devicePixelRatio;
+    expect(container.constraints!.maxWidth, (screenWidth - 64) * 0.1);
 
-  testWidgets('AnimationPage should reset progress on reset button tap', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MaterialApp(home: AnimationPage()));
-
-    // Tap the heart icon to update the progress.
-    await tester.tap(find.byIcon(Icons.favorite));
+    await tester.tap(find.byIcon(Icons.favorite).at(1));
     await tester.pumpAndSettle();
 
-    // Verify that the progress is updated.
-    expect(
-        tester.widget<LinearProgressIndicator>(find.byType(LinearProgressIndicator)).value,
-        greaterThan(0.0));
-
-    // Tap the reset button.
-    await tester.tap(find.widgetWithText(ElevatedButton, 'Reset'));
-    await tester.pumpAndSettle();
-
-    // Verify that the progress is reset to 0.0.
-    expect(
-        tester.widget<LinearProgressIndicator>(find.byType(LinearProgressIndicator)).value,
-        0.0);
+    container = tester.widget<AnimatedContainer>(animatedContainer);
+    expect(container.constraints!.maxWidth, (screenWidth - 64) * 0.2);
   });
 }

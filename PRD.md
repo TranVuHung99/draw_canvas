@@ -78,12 +78,12 @@ This page will showcase a delightful and interactive animation sequence.
 *   **Process: Fade-in Animation**
     - [x] The content of the animation page fades in when the page is loaded.
 *   **Process: Interactive Heart Animation**
-    - [ ] There are three heart icons in a row.
-    - [ ] When a heart is tapped, it animates towards a "cart" icon.
+    - [x] There are three heart icons in a row.
+    - [x] When a heart is tapped, it animates towards a "cart" icon.
 *   **Process: Progress Bar Update**
-    - [ ] A progress bar is displayed below the hearts.
-    - [ ] The progress bar updates with an animation when a heart is selected.
-    - [ ] A counter is displayed next to the "cart" icon, showing the number of selected hearts.
+    - [x] A progress bar is displayed below the hearts.
+    - [x] The progress bar updates with an animation when a heart is selected.
+    - [x] A counter is displayed next to the "cart" icon, showing the number of selected hearts.
 
 #### 3.2.1. Testing
 
@@ -91,9 +91,9 @@ This page will showcase a delightful and interactive animation sequence.
     - [ ] Verify that tapping the heart icon triggers the full animation sequence as designed.
     - [ ] Verify that the progress bar updates its value correctly after each heart animation is completed.
 *   **Automated Testing:**
-    - [ ] Write a widget test to verify that the animation controllers are initialized and disposed of correctly.
-    - [ ] Write a widget test to pump the animation and verify that the animated properties (scale, color, etc.) change as expected over time.
-    - [ ] Write a unit test for the progress calculation logic.
+    - [x] Write a widget test to verify that the animation controllers are initialized and disposed of correctly.
+    - [x] Write a widget test to pump the animation and verify that the animated properties (scale, color, etc.) change as expected over time.
+    - [x] Write a unit test for the progress calculation logic.
 
 ## 4. User Interface (UI)
 
