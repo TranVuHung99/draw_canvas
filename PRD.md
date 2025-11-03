@@ -67,7 +67,7 @@ The drawing canvas will be a digital easel where users can express their creativ
     - [x] Write a widget test to verify that the slider in the drawer is present and can be changed.
     - [x] Write a widget test to verify that the stroke width text in the app bar is updated when the slider is changed.
     - [x] Write a widget test to verify that the pan update listener draws and erases points correctly.
-    - [x] Write a widget test to simulate a drag-and-drop operation and verify that the sticker is added to the canvas state.
+    - [x] Write a widget test to simulate a drag-and-drop operation and and verify that the sticker is added to the canvas state.
     - [x] Write a unit test for the "Clear" functionality to ensure the canvas state is properly cleared.
     - [ ] ~~Write a widget test for saving to gallery.~~ (Removed as it is hard to test without mocking)
 
@@ -76,15 +76,15 @@ The drawing canvas will be a digital easel where users can express their creativ
 This page will showcase a delightful and interactive animation sequence.
 
 *   **Process: Interactive Heart Animation**
-    - [ ] Create a stateful widget for the heart icon.
-    - [ ] Initialize `AnimationController`s and define `Tween`s for each animation property (scale, color, rotation, position).
-    - [ ] Add a tap gesture recognizer to the heart icon.
-    - [ ] On tap, trigger the animation controllers in sequence to create the desired effect.
+    - [x] Create a stateful widget for the heart icon.
+    - [x] Initialize `AnimationController`s and define `Tween`s for each animation property (scale, color, rotation, position).
+    - [x] Add a tap gesture recognizer to the heart icon.
+    - [x] On tap, trigger the animation controllers in sequence to create the desired effect.
 
 *   **Process: Progress Bar Update**
-    - [ ] Maintain a state variable for the progress.
-    - [ ] After the heart animation completes, update the progress state.
-    - [ ] Use an `AnimatedBuilder` to link the progress state to the width of the progress bar, animating its growth.
+    - [x] Maintain a state variable for the progress.
+    - [x] After the heart animation completes, update the progress state.
+    - [x] Use an `AnimatedBuilder` to link the progress state to the width of the progress bar, animating its growth.
 
 #### 3.2.1. Testing
 
