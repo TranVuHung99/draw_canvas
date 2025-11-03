@@ -92,9 +92,9 @@ This page will showcase a delightful and interactive animation sequence.
     - [ ] Verify that tapping the heart icon triggers the full animation sequence as designed.
     - [ ] Verify that the progress bar updates its value correctly after each heart animation is completed.
 *   **Automated Testing:**
-    - [ ] Write a widget test to verify that the animation controllers are initialized and disposed of correctly.
-    - [ ] Write a widget test to pump the animation and verify that the animated properties (scale, color, etc.) change as expected over time.
-    - [ ] Write a unit test for the progress calculation logic.
+    - [x] Write a widget test to verify that the animation controllers are initialized and disposed of correctly.
+    - [x] Write a widget test to pump the animation and verify that the animated properties (scale, color, etc.) change as expected over time.
+    - [x] Write a unit test for the progress calculation logic.
 
 ## 4. User Interface (UI)
 
