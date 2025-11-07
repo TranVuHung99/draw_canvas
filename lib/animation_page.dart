@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class AnimationPage extends StatefulWidget {
@@ -71,6 +73,8 @@ class _AnimationPageState extends State<AnimationPage>
     final heartOffset = heartRenderBox.localToGlobal(Offset.zero);
     final cartOffset = cartRenderBox.localToGlobal(Offset.zero);
 
+    final angle = atan2(cartOffset.dy - heartOffset.dy, cartOffset.dx - heartOffset.dx) - pi / 2;
+
     final overlay = Overlay.of(context);
     late OverlayEntry entry;
 
@@ -81,7 +85,7 @@ class _AnimationPageState extends State<AnimationPage>
     );
 
     // Rotation animation
-    final rotationAnimation = Tween<double>(begin: 0.0, end: 0.5).animate(
+    final rotationAnimation = Tween<double>(begin: 0.0, end: angle).animate(
       CurvedAnimation(
           parent: _animationControllers[index], curve: Curves.easeInOut),
     );
